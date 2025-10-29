@@ -1,0 +1,100 @@
+# ================================
+# Rust
+# ================================
+/backend/target/
+**/*.rs.bk
+Cargo.lock # (optional—keep if you want fully reproducible deploys)
+*.rlib
+
+# VS Code/IDE/Editor junk
+*.swp
+*.swo
+*.vscode/*
+.idea/
+*.iml
+
+# ================================
+# Python + Research
+# ================================
+/python-research/.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.manifest
+pip-wheel-metadata/
+*.log
+.mypy_cache/
+.python-version
+
+# Data science outputs
+/data/
+*.csv
+*.parquet
+*.hdf5
+*.npz
+*.sav
+/results/
+checkpoints/
+runs/
+wandb/
+
+# Jupyter notebook checkpoints/cache
+**/.ipynb_checkpoints
+
+# ================================
+# Database/Secrets
+# ================================
+/database/*.sqlite*
+/database/*.db
+.env
+.env.*
+!.env.example  # (commit a sanitized template)
+secrets/
+*.pem
+
+# ================================
+# Docker
+# ================================
+docker-compose.override.yml
+*.pid
+
+# ================================
+# OS/Filesystem
+# ================================
+*.DS_Store
+Thumbs.db
+ehthumbs.db
+.DS_Store?
+
+# ================================
+# Logs
+# ================================
+*.log
+logs/
+log/
+*.tmp
+
+# ================================
+# Test/Build Artifacts
+# ================================
+target/
+*.exe
+*.dll
+*.so
+*.dylib
+
+coverage/
+htmlcov/
+*.cover
+*.coverage
+cov.xml
+
+PROJECT.md
+CLAUDE.local.md

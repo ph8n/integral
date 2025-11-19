@@ -1,10 +1,41 @@
 # ================================
-# Rust
+# C++
 # ================================
-/backend/target/
-**/*.rs.bk
-Cargo.lock # (optional—keep if you want fully reproducible deploys)
-*.rlib
+# Build directories
+build/
+cmake-build-*/
+out/
+
+# Compiled Object files
+*.o
+*.obj
+*.slo
+*.lo
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.a
+*.lib
+*.lai
+*.la
+
+# Executables
+*.exe
+*.out
+*.app
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
 
 # VS Code/IDE/Editor junk
 *.swp
@@ -97,5 +128,7 @@ htmlcov/
 cov.xml
 
 PROJECT.md
-CLAUDE.local.md
-.aider*
+CLAUDE.md
+AGENTs.md
+openspec/
+.opencode

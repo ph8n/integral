@@ -52,3 +52,18 @@ class MeanVariance(ObjectiveFunction):
         ret = expected_returns @ weights
 
         return cp.Minimize(self.risk_aversion * risk - ret)
+
+
+class MaximizeReturns(ObjectiveFunction):
+    """
+    Objective: Maximize Expected Return.
+    Warning: Without additional constraints, this will allocate 100% to the highest return asset.
+    """
+
+    def formulate(
+        self, weights: cp.Variable, expected_returns: np.ndarray, covariance: np.ndarray
+    ) -> cp.Minimize:
+        # Maximize mu^T * w
+        # Equivalent to Minimize -mu^T * w
+        ret = expected_returns @ weights
+        return cp.Minimize(-ret)

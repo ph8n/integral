@@ -1,7 +1,12 @@
 pandas
 matplotlib
 jupyter
-quantrocket-client
 cvxpy
 numpy
+pytest
+pytest-mock
+nautilus_trader
+openbb
 
+torch
+alpaca-py

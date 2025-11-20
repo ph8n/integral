@@ -1,8 +1,9 @@
 import cvxpy as cp
 import numpy as np
 import pandas as pd
-from typing import List, Optional
+from typing import List, Optional, Union
 from .objective import ObjectiveFunction
+from .constraints import Constraint
 
 
 class OptimizerEngine:
@@ -17,6 +18,7 @@ class OptimizerEngine:
         covariance_matrix: pd.DataFrame,
         objective: ObjectiveFunction,
         constraints: Optional[List] = None,
+        risk_constraints: Optional[List[Constraint]] = None,
     ) -> pd.Series:
         """
         Runs the optimization and returns the optimal weights.
@@ -26,7 +28,8 @@ class OptimizerEngine:
             expected_returns: Series of expected returns for each ticker.
             covariance_matrix: DataFrame of covariance for the tickers.
             objective: The ObjectiveFunction strategy to use.
-            constraints: Optional list of additional cvxpy constraints.
+            constraints: Optional list of additional raw cvxpy constraints.
+            risk_constraints: Optional list of high-level Constraint objects.
 
         Returns:
             pd.Series: Optimal weights indexed by ticker.
@@ -58,10 +61,13 @@ class OptimizerEngine:
 
         all_constraints = base_constraints
         if constraints:
-            # If external constraints are provided, we assume they are ADDITIVE to base constraints
-            # or the user handles the logic.
-            # For 'add-risk-constraints', we will likely pass more here.
+            # If external raw constraints are provided
             all_constraints.extend(constraints)
+
+        if risk_constraints:
+            # Apply high-level constraints
+            for rc in risk_constraints:
+                all_constraints.extend(rc.apply(weights, tickers))
 
         # Define Problem
         prob = cp.Problem(obj, all_constraints)
